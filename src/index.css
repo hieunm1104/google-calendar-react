@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.root,
+#root,
+#docs-root {
+  --dark-blue: #0F4C81;
+  --light-blue: #5684AE;
+  --light-orange: #ffe4c8;
+  --dark-orange: #F9BE81;
+  --calendar-color: #E4F6ED;
+}
