@@ -9,12 +9,12 @@ const phoneSlice = createSlice({
   },
   reducers: {
     setDaySelected(state, action) {
-      const newPhone = action.payload;
-      state.daySelected = newPhone.daySelected;
+      const day = action.payload;
+      state.daySelected = day.daySelected;
     },
     setToDaySelected(state, action) {
-      const newPhone = action.payload;
-      state.toDaySelected = newPhone.toDaySelected;
+      const today = action.payload;
+      state.toDaySelected = today.toDaySelected;
     },
   },
 });

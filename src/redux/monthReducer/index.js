@@ -10,8 +10,9 @@ const monthSlice = createSlice({
   },
   reducers: {
     setMonthIndex(state, action) {
-      const newPhone = action.payload;
-      state.monthIndex = newPhone.monthIndex;
+      const month = action.payload;
+      console.log("🚀 ~ setMonthIndex ~ action.payload:", action.payload)
+      state.monthIndex = month.monthIndex;
     },
     setSmallCalendarMonth(state, action) {
       const newPhone = action.payload;
