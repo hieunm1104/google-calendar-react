@@ -4,18 +4,16 @@ import { getMonth } from './util'
 import CalendarHeader from './components/Calendar/CalendarHeader'
 import Sidebar from './components/Sidebar/Sidebar'
 import Month from './components/Month/Month'
+import { useSelector } from 'react-redux'
 
 function App() {
-
-  const [currentMonth, setCurrentMonth] = useState(getMonth())
-
   return (
     <>
-      <div className="h-screen flex flex-col">
-        <CalendarHeader />
-        <div className="flex flex-1">
+      <div className="min-h-screen flex flex-col w-full">
+        <div className="flex gap-10 p-10">
           <Sidebar />
-          <Month month={currentMonth}/>
+          
+          <Month/>
         </div>
       </div>
     </>

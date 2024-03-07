@@ -18,7 +18,11 @@ export default {
         "light-orange": "var(--light-orange)",
         "dark-orange": "var(--dark-orange)",
         "calendar-color": "var(--calendar-color)",
-      }
+        tile: {
+          base: '#E4F6ED',
+        },
+      },
+     
     },
   },
   plugins: [],

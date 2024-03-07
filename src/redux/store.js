@@ -2,7 +2,6 @@ import monthReducer from './monthReducer';
 import dayReducer from './dayReducer';
 import modalReducer from './modalReducer';
 import eventsReducer from './eventsReducer';
-import { createSlice } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 
 const rootReducer = {
