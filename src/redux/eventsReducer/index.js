@@ -38,7 +38,6 @@ const modalSlice = createSlice({
       }
     },
     deleteEvent(state, action) {
-      console.log(action.payload);
       const delId = action.payload.id;
       const key = dayjs(new Date(action.payload?.date)).format('DD-MMMM-YYYY');
       if (!!state.listEvent[key]) {

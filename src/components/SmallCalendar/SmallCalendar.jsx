@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { getMonth } from "../../util";
 import { useDispatch, useSelector } from "react-redux";
-import { setMonthIndex } from "../../redux/monthReducer";
 import { setSmallCalendarMonth } from "../../redux/monthReducer";
 import { setDaySelected } from "../../redux/dayReducer";
 import { setIsContentVisible } from "../../redux/modalReducer";
@@ -15,7 +14,7 @@ function SmallCalendar({ day }) {
   const daySelected = useSelector((state) => state.day.daySelected);
   const isContentVisible = useSelector((state) => state.modal.isContentVisible);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     setCurrentMonthIndex(monthIndex);
   }, [monthIndex]);
@@ -69,13 +68,12 @@ function SmallCalendar({ day }) {
         </button>
         <div className="grid grid-cols-7 grid-rows-6 gap-2">
           <div className="text-[16px] py-1 text-center ml-4">S</div>
-          <div className="text-[16px] py-1 text-center ml-4 ">M</div>
+          <div className="text-[16px] py-1 text-center ml-4">M</div>
           <div className="text-[16px] py-1 text-center ml-4">T</div>
           <div className="text-[16px] py-1 text-center ml-4">W</div>
           <div className="text-[16px] py-1 text-center ml-4">T</div>
           <div className="text-[16px] py-1 text-center ml-4">F</div>
           <div className="text-[16px] py-1 text-center ml-4">S</div>
-
           {currentMonth &&
             currentMonth.map((week, index) => (
               <React.Fragment key={index}>
@@ -94,7 +92,7 @@ function SmallCalendar({ day }) {
                             ? "bg-light-blue text-white rounded-full text-center"
                             : ""
                         } ${
-                          selectedDay === day
+                            selectedDay === day
                             ? "bg-dark-blue text-white rounded-full text-center"
                             : ""
                         } ${dayjs(daySelected).format('DD-MM-YY') === day.format('DD-MM-YY') ? "bg-dark-blue text-white rounded-full text-center"

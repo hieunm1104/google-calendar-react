@@ -54,7 +54,7 @@ const ModalInfoEvent = ({item,isOpen,setIsOpen,}) => {
               >
                 <div className="flex w-10/12">
                   <div className="text-blue-dark mr-3">Title:</div>
-                  <div>{item?.data?.title}</div>
+                  <div>{item.data.title}</div>
                 </div>
                 <button onClick={closeModal}>
                   <XIcon className="h-4" />
@@ -62,30 +62,30 @@ const ModalInfoEvent = ({item,isOpen,setIsOpen,}) => {
               </Dialog.Title>
 
               <div className="mt-2">
-                <p className="text-sm text-gray-500 flex justify-start items-center">
+                {/* <p className="text-sm text-gray-500 flex justify-start items-center">
                   <ClockIcon className="h-5 w-5 bg-blue-dark rounded-full text-white mr-3" />
-                  {item?.data?.time.from.hour < 10
-                    ? `0${item?.data?.time.from.hour}`
-                    : item?.data?.time.from.hour}
+                  {item.data.time.from.hour < 10
+                    ? `0${item.data.time.from.hour}`
+                    : item.data.time.from.hour}
                   {':'}
-                  {item?.data?.time.from.minute < 10
-                    ? `0${item?.data?.time.from.minute}`
-                    : item?.data?.time.from.minute}
+                  {item.data.time.from.minute < 10
+                    ? `0${item.data.time.from.minute}`
+                    : item.data.time.from.minute}
                   {' - '}
-                  {item?.data?.time.to.hour < 10
-                    ? `0${item?.data?.time.to.hour}`
-                    : item?.data?.time.to.hour}
+                  {item.data.time.to.hour < 10
+                    ? `0${item.data.time.to.hour}`
+                    : item.data.time.to.hour}
                   {':'}
-                  {item?.data?.time.to.minute < 10
-                    ? `0${item?.data?.time.to.minute}`
-                    : item?.data?.time.to.minute}
-                </p>
+                  {item.data.time.to.minute < 10
+                    ? `0${item.data.time.to.minute}`
+                    : item.data.time.to.minute}
+                </p> */}
               </div>
 
               <div className="mt-2">
                 <p className="text-sm text-gray-500 flex">
                   <div className="text-blue-dark mr-3 ">Description:</div>
-                  <div>{item?.data?.description}</div>
+                  <div>{item.data.description}</div>
                 </p>
               </div>
 
@@ -96,7 +96,7 @@ const ModalInfoEvent = ({item,isOpen,setIsOpen,}) => {
                   onClick={() => {
                     const action = deleteEvent({
                       id: item.id,
-                      date: item?.data?.date,
+                      date: item.data.date,
                     });
 
                     dispatch(action);

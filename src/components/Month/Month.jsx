@@ -9,7 +9,7 @@ function Month() {
     return (
         <div className='flex flex-col w-full h-full bg-white p-10 rounded-2xl'>
             <CalendarHeader />
-
+            
             <div className='flex-1 grid grid-cols-7'>
                 <div className="text-xs py-1 text-center font-bold text-gray-400">SUN</div>
             <div className="text-xs py-1 text-center font-bold text-gray-400">MON</div>

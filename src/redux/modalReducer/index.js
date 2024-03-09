@@ -9,12 +9,12 @@ const modalSlice = createSlice({
   },
   reducers: {
     setIsModalVisible(state, action) {
-      const newPhone = action.payload;
-      state.isModalVisible = newPhone.isModalVisible;
+      const isModalVisibleNew = action.payload;
+      state.isModalVisible = isModalVisibleNew.isModalVisible;
     },
     setIsContentVisible(state, action) {
-      const newPhone = action.payload;
-      state.isContentVisible = newPhone.isContentVisible;
+      const isContentVisibalNew = action.payload;
+      state.isContentVisible = isContentVisibalNew.isContentVisible;
     },
   },
 });
