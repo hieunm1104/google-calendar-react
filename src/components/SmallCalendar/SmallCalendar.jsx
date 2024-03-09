@@ -18,7 +18,6 @@ function SmallCalendar({ day }) {
   useEffect(() => {
     setCurrentMonthIndex(monthIndex);
   }, [monthIndex]);
-
   useEffect(() => {
     setCurrentMonth(getMonth(currentMonthIndex));
   }, [currentMonthIndex]);
@@ -31,17 +30,6 @@ function SmallCalendar({ day }) {
   function handleNextMonth() {
     setCurrentMonthIndex(currentMonthIndex + 1);
   }
-
-  const handleMoveToMonth = () => {
-    const action = setSmallCalendarMonth({
-      smallCalendarMonth: currentMonthIndex,
-    });
-    const actionDay = setDaySelected({ daySelected: day });
-    const actionContent = setIsContentVisible({ isContentVisible: true });
-    dispatch(action);
-    dispatch(actionDay);
-    dispatch(actionContent);
-  };
 
   const handleClickDay = (day) => {
     setSelectedDay(day);
