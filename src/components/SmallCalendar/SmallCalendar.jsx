@@ -22,7 +22,9 @@ function SmallCalendar({ day }) {
   useEffect(() => {
     setCurrentMonth(getMonth(currentMonthIndex));
   }, [currentMonthIndex]);
-
+  useEffect(() => {
+    setSelectedDay(daySelected)
+  },[daySelected])
   function handlePrevMonth() {
     setCurrentMonthIndex(currentMonthIndex - 1);
   }
@@ -44,6 +46,7 @@ function SmallCalendar({ day }) {
   const handleClickDay = (day) => {
     setSelectedDay(day);
   };
+
   return (
     <div className="p-10">
       <header className="flex justify-between flex-col">
@@ -95,7 +98,7 @@ function SmallCalendar({ day }) {
                             selectedDay === day
                             ? "bg-dark-blue text-white rounded-full text-center"
                             : ""
-                        } ${dayjs(daySelected).format('DD-MM-YY') === day.format('DD-MM-YY') ? "bg-dark-blue text-white rounded-full text-center"
+                        } ${dayjs(selectedDay).format('DD-MM-YY') === day.format('DD-MM-YY') ? "bg-dark-blue text-white rounded-full text-center"
                         : ""}`}
                       >
                         {day.format("D")}

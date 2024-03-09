@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { BookmarkIcon, ClockIcon, XIcon } from "@heroicons/react/outline";
 import { CalendarIcon, CheckIcon, MenuAlt3Icon } from "@heroicons/react/solid";
 import { addEvent } from "../../redux/eventsReducer";
-import TimePicker from "rc-time-picker";
-import moment from "moment";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import dayjs from "dayjs";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 const labelsClasses = [
   { bg: "bg-indigo-500", border: "border-indigo-500" },
   { bg: "bg-gray-500", border: "border-gray-500" },
@@ -24,6 +26,7 @@ function EventModal(props) {
   const [description, setDescription] = useState("");
   const [selectedLable, setSelectedLable] = useState(labelsClasses[0]);
   const daySelected = useSelector((state) => state.day.daySelected);
+  const [value, setValue] = useState(dayjs("2022-04-17T9:30"));
   const dispatch = useDispatch();
   function handleModalVisible(isModalVisible) {
     const action = setIsModalVisible({ isModalVisible: false });
@@ -41,6 +44,16 @@ function EventModal(props) {
         ...values,
         labelColor: selectedLable,
         date: daySelected,
+      },
+      time: {
+        from: {
+          hour: fromTime.hour(),
+          minute: fromTime.minute(),
+        },
+        to: {
+          hour: toTime.hour(),
+          minute: toTime.minute(),
+        },
       },
       type: "appointment",
     };
@@ -144,33 +157,25 @@ function EventModal(props) {
                 </div>
               ))}
             </div>
-            {/* <span className="material-icons-outlined text-gray-400">
+            <span className="material-icons-outlined text-gray-400">
               schedule
             </span>
             <div className="flex justify-between">
-            <TimePicker
-              showSecond={false}
-              minuteStep={15}
-              onChange={onChangeFromTime}
-              value={moment(fromTime.toDate())}
-            />
-            <span>-</span>
-            <TimePicker
-              showSecond={false}
-              minuteStep={15}
-              onChange={onChangeToTime}
-              disabledHours={() => {
-                const hour = fromTime.hour();
-                const arr = [];
-                for (let i = 0; i <= hour; i++) {
-                  arr.push(i);
-                }
-
-                return arr;
-              }}
-              value={moment(toTime.toDate())}
-            />
-          </div> */}
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["TimePicker", "TimePicker"]}>
+                  <TimePicker
+                    label="From time"
+                    defaultValue={dayjs("2022-04-17T9:30")}
+                    onChange={onChangeFromTime}
+                  />
+                  <TimePicker
+                    label="To time"
+                    value={value}
+                    onChange={onChangeToTime}
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+            </div>
           </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5">
