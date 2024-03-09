@@ -3,11 +3,17 @@ import ModalInfoEvent from "../ModalInfoEvent";
 import { VideoCameraIcon } from "@heroicons/react/outline";
 
 function EventItem({ data }) {
+  console.log("🚀 ~ EventItem ~ data:", data)
   const [isOpen, setIsOpen] = useState(false);
 
-  function openModal() {
+  const openModal = () => {
     setIsOpen(true);
   }
+  
+  const closeModal = () => {
+    setIsOpen(false)
+  }
+
   return (
     <>
       <div
@@ -19,6 +25,16 @@ function EventItem({ data }) {
             <div className="text-blue-dark text-sm font-bold mb-1">
               {data.data.title}
             </div>
+            <div className="text-xs">
+              {data.data.time.from.hour}:
+              {data.data.time.from.minute < 10
+                ? `0${data.data.time.from.minute}`
+                : data.data.time.from.minute}{" "}
+              - {data.data.time.to.hour}:
+              {data.data.time.to.minute < 10
+                ? `0${data.data.time.to.minute}`
+                : data.data.time.to.minute}
+            </div>
           </div>
 
           {data.type === "appointment" && (
@@ -26,7 +42,10 @@ function EventItem({ data }) {
           )}
         </div>
 
-        <ModalInfoEvent setIsOpen={setIsOpen} isOpen={isOpen} item={data} />
+        <ModalInfoEvent closeModal={(e) => {
+          closeModal()
+          console.log("a", closeModal)
+        }} isOpen={isOpen} item={data} />
       </div>
       {/* ) : (
             <div></div>

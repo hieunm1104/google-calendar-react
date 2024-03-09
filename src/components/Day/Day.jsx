@@ -21,8 +21,11 @@ function Day({ day, weekIdx }) {
     const action = setIsModalVisible({ isModalVisible: true });
     dispatch(action);
   };
-  function openModal() {
+  const openModal = () => {
     setIsOpen(true);
+  }
+  const closeModal = () => {
+    setIsOpen(false)
   }
   const listEvent = useSelector((state) => {
     const a = Object.keys(state.event.listEvent).find(
@@ -79,8 +82,10 @@ function Day({ day, weekIdx }) {
                       {item.data.title}
                     </div>
                     <ModalInfoEvent
+                      closeModal={(e) => {
+                        closeModal();
+                      }}
                       isOpen={isOpen}
-                      setIsOpen={setIsOpen}
                       item={item}
                     />
                   </>

@@ -18,12 +18,15 @@ function SmallCalendar({ day }) {
   useEffect(() => {
     setCurrentMonthIndex(monthIndex);
   }, [monthIndex]);
+
   useEffect(() => {
     setCurrentMonth(getMonth(currentMonthIndex));
   }, [currentMonthIndex]);
+
   useEffect(() => {
     setSelectedDay(daySelected)
   },[daySelected])
+  
   function handlePrevMonth() {
     setCurrentMonthIndex(currentMonthIndex - 1);
   }

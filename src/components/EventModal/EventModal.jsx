@@ -44,17 +44,18 @@ function EventModal(props) {
         ...values,
         labelColor: selectedLable,
         date: daySelected,
-      },
-      time: {
-        from: {
-          hour: fromTime.hour(),
-          minute: fromTime.minute(),
+        time: {
+          from: {
+            hour: fromTime.hour(),
+            minute: fromTime.minute(),
+          },
+          to: {
+            hour: toTime.hour(),
+            minute: toTime.minute(),
+          },
         },
-        to: {
-          hour: toTime.hour(),
-          minute: toTime.minute(),
-        },
       },
+      
       type: "appointment",
     };
     const action = addEvent({
@@ -167,10 +168,11 @@ function EventModal(props) {
                     label="From time"
                     defaultValue={dayjs("2022-04-17T9:30")}
                     onChange={onChangeFromTime}
+                    value={dayjs(fromTime.toDate())}
                   />
                   <TimePicker
                     label="To time"
-                    value={value}
+                    value={dayjs(toTime.toDate())}
                     onChange={onChangeToTime}
                   />
                 </DemoContainer>

@@ -5,14 +5,14 @@ import { useDispatch } from 'react-redux';
 import { deleteEvent } from '../../redux/eventsReducer';
 
 
-const ModalInfoEvent = ({item,isOpen,setIsOpen,}) => {
+const ModalInfoEvent = ({item, isOpen, closeModal}) => {
+
   const dispatch = useDispatch();
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+
+
 
   return (
-    <Transition appear show={isOpen} as={Fragment}>
+    <Transition appear show={isOpen} as={Fragment} onClick={(e) => e.stopPropagation()}>
       <Dialog
         as="div"
         className="fixed inset-0 z-10 overflow-y-auto"
@@ -62,8 +62,8 @@ const ModalInfoEvent = ({item,isOpen,setIsOpen,}) => {
               </Dialog.Title>
 
               <div className="mt-2">
-                {/* <p className="text-sm text-gray-500 flex justify-start items-center">
-                  <ClockIcon className="h-5 w-5 bg-blue-dark rounded-full text-white mr-3" />
+                <p className="text-sm text-gray-500 flex justify-start items-center">
+                  {/* <ClockIcon className="h-5 w-5 bg-blue-dark rounded-full text-white mr-3" />
                   {item.data.time.from.hour < 10
                     ? `0${item.data.time.from.hour}`
                     : item.data.time.from.hour}
@@ -78,8 +78,8 @@ const ModalInfoEvent = ({item,isOpen,setIsOpen,}) => {
                   {':'}
                   {item.data.time.to.minute < 10
                     ? `0${item.data.time.to.minute}`
-                    : item.data.time.to.minute}
-                </p> */}
+                    : item.data.time.to.minute} */}
+                </p>
               </div>
 
               <div className="mt-2">
