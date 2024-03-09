@@ -1,7 +1,6 @@
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Month from "./components/Month/Month";
-import { useSelector } from "react-redux";
 
 function App() {
 

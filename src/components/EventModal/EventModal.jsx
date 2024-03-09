@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { setIsModalVisible } from "../../redux/modalReducer";
 import { useSelector, useDispatch } from "react-redux";
+import { BookmarkIcon, ClockIcon, XIcon } from "@heroicons/react/outline";
+import { CalendarIcon, CheckIcon, MenuAlt3Icon } from "@heroicons/react/solid";
 import { addEvent } from "../../redux/eventsReducer";
+import TimePicker from "rc-time-picker";
+import moment from "moment";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import dayjs from "dayjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 const labelsClasses = [
-  { bg: 'bg-indigo-500', border: 'border-indigo-500' },
-  { bg: 'bg-gray-500', border: 'border-gray-500' },
-  { bg: 'bg-green-500', border: 'border-green-500' },
-  { bg: 'bg-blue-500', border: 'border-blue-500' },
-  { bg: 'bg-red-500', border: 'border-red-500' },
-  { bg: 'bg-purple-500', border: 'border-purple-500' },
+  { bg: "bg-indigo-500", border: "border-indigo-500" },
+  { bg: "bg-gray-500", border: "border-gray-500" },
+  { bg: "bg-green-500", border: "border-green-500" },
+  { bg: "bg-blue-500", border: "border-blue-500" },
+  { bg: "bg-red-500", border: "border-red-500" },
+  { bg: "bg-purple-500", border: "border-purple-500" },
 ];
-
 
 function EventModal(props) {
   const [title, setTitle] = useState("");
@@ -25,6 +29,12 @@ function EventModal(props) {
     const action = setIsModalVisible({ isModalVisible: false });
     dispatch(action);
   }
+  const [fromTime, setFromTime] = useState(
+    dayjs().set("hour", 8).set("minute", 0).set("second", 0)
+  );
+  const [toTime, setToTime] = useState(
+    dayjs().set("hour", 9).set("minute", 0).set("second", 0)
+  );
   const handleSubmit = (values) => {
     const data = {
       data: {
@@ -51,13 +61,28 @@ function EventModal(props) {
       description: "",
     },
   });
+  const onChangeFromTime = (value) => {
+    if (!!value) {
+      setFromTime(dayjs(value));
+    } else {
+      setFromTime(dayjs().set("hour", 8).set("minute", 0).set("second", 0));
+    }
+  };
+
+  const onChangeToTime = (value) => {
+    if (!!value) {
+      setToTime(dayjs(value));
+    } else {
+      setToTime(dayjs().set("hour", 9).set("minute", 0).set("second", 0));
+    }
+  };
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form
         className="bg-white rounded-lg w-1/4"
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit({ title, description, daySelected, selectedLable });
+          handleSubmit({ title, description, selectedLable });
         }}
       >
         <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
@@ -78,7 +103,6 @@ function EventModal(props) {
             <div></div>
             <input
               form={form}
-              required
               type="text"
               name="title"
               placeholder="Add title...."
@@ -87,9 +111,10 @@ function EventModal(props) {
               className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:border-dark-blue focus:outline-none focus:ring-0"
             />
             <span className="material-icons-outlined text-gray-400">
-              schedule
+              date_range
             </span>
             <p className="text-left">{daySelected?.format("dddd, MMMM DD")}</p>
+
             <span className="material-icons-outlined text-gray-400">
               segment
             </span>
@@ -119,6 +144,33 @@ function EventModal(props) {
                 </div>
               ))}
             </div>
+            {/* <span className="material-icons-outlined text-gray-400">
+              schedule
+            </span>
+            <div className="flex justify-between">
+            <TimePicker
+              showSecond={false}
+              minuteStep={15}
+              onChange={onChangeFromTime}
+              value={moment(fromTime.toDate())}
+            />
+            <span>-</span>
+            <TimePicker
+              showSecond={false}
+              minuteStep={15}
+              onChange={onChangeToTime}
+              disabledHours={() => {
+                const hour = fromTime.hour();
+                const arr = [];
+                for (let i = 0; i <= hour; i++) {
+                  arr.push(i);
+                }
+
+                return arr;
+              }}
+              value={moment(toTime.toDate())}
+            />
+          </div> */}
           </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5">

@@ -15,7 +15,7 @@ function Sidebar(props) {
 
   const listEvent = useSelector((state) => {
     const a = Object.keys(state.event.listEvent)
-      .filter((key, index) => {
+      .filter((key) => {
         return dayjs(new Date(key)).isSameOrAfter(
           dayjs(new Date().setHours(0, 0, 0, 0))
         );
@@ -55,30 +55,50 @@ function Sidebar(props) {
             {toggleView ? "View All" : "Hide"}
           </button>
         </div>
-        <div className="text-left px-4 text-gray-400 font-black">
-          Today,{dayjs().date()}{" "}
-          {dayjs(new Date(dayjs().year(), currentMonthIndex)).format("MMM")}
-        </div>
         <div>
           {listEvent.length > 0 ? (
             <div>
               {listEvent &&
                 listEvent.map((data, key) => (
-                  <div>
-                    {data[Object.keys(data)[0]].map((item, index) => {
-                      if (toggleView) {
-                        let count = 0;
-                        for (let i = 0; i < key; i++) {
-                          count = count + listCount[i];
-                        }
-                        if (index + count <= 2) {
-                          return <EventItem data={item} key={index} />;
-                        }
-                      } else {
-                        return <EventItem data={item} key={index} />;
-                      }
-                    })}
-                  </div>
+                  <>
+                    <div
+                      className={`text-sm text-dark-blue font-semibold ${
+                        toggleView && key > 0 && "hidden"
+                      }`}
+                    >
+                      {dayjs(new Date(Object.keys(data)[0])).format(
+                        "DD-MM-YY"
+                      ) === dayjs().format("DD-MM-YY") ? (
+                        <>
+                          Today,{" "}
+                          {dayjs(new Date(Object.keys(data)[0])).format(
+                            "DD MMM"
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {dayjs(new Date(Object.keys(data)[0])).format(
+                            "dddd, DD MMM"
+                          )}
+                        </>
+                      )}
+                      <div>
+                        {data[Object.keys(data)[0]].map((item, index) => {
+                          if (toggleView) {
+                            let count = 0;
+                            for (let i = 0; i < key; i++) {
+                              count = count + listCount[i];
+                            }
+                            if (index + count <= 2) {
+                              return <EventItem data={item} key={index} />;
+                            }
+                          } else {
+                            return <EventItem data={item} key={index} />;
+                          }
+                        })}
+                      </div>
+                    </div>
+                  </>
                 ))}
             </div>
           ) : (
