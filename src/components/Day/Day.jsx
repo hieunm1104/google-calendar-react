@@ -5,7 +5,7 @@ import { setDaySelected } from "../../redux/dayReducer";
 import { setIsModalVisible } from "../../redux/modalReducer";
 import EventModal from "../EventModal/EventModal";
 import ModalInfoEvent from "../ModalInfoEvent";
-function Day({ day, weekIdx }) {
+function Day({ day }) {
   const [selectedDay, setSelectedDay] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [currentMonthIndex, setCurrentMonthIndex] = useState(dayjs().month());
@@ -13,7 +13,7 @@ function Day({ day, weekIdx }) {
   const dispatch = useDispatch();
   const daySelected = useSelector((state) => state.day.daySelected);
   const visibleModal = useSelector((state) => state.modal.isModalVisible);
-  const [selectedItem, setItem] = useState()
+  const [selectedItem, setItem] = useState();
 
   const handleDaySelected = (day) => {
     const action = setDaySelected({ daySelected: day });
@@ -24,10 +24,8 @@ function Day({ day, weekIdx }) {
     dispatch(action);
   };
   const openModal = (item) => {
-    console.log('ITEm', item)
     if (item) {
-
-      setItem(item)
+      setItem(item);
       setIsOpen(true);
     }
   };
@@ -67,13 +65,12 @@ function Day({ day, weekIdx }) {
           >
             {day.format("D")}
           </button>
-          
+
           {listEvent &&
             listEvent.map((item, index) => (
               <>
                 {index < 2 && (
                   <>
-                    
                     <div
                       key={index}
                       className={`w-full text-left text-xs p-1 bg-dark-orange rounded mb-0.5 text-dark-blue font-semibold truncate border-l-4 ${item.data.labelColor.border} cursor-pointer hover:opacity-80`}
@@ -84,7 +81,6 @@ function Day({ day, weekIdx }) {
                     >
                       {item.data.title}
                     </div>
-                  
                   </>
                 )}
               </>
@@ -94,14 +90,13 @@ function Day({ day, weekIdx }) {
               {listEvent?.length - 2} More
             </div>
           )}
-
-                    <ModalInfoEvent
-                      closeModal={(e) => {
-                        closeModal();
-                      }}
-                      isOpen={isOpen}
-                      item={selectedItem}
-                    />
+          <ModalInfoEvent
+            closeModal={(e) => {
+              closeModal();
+            }}
+            isOpen={isOpen}
+            item={selectedItem}
+          />
         </header>
       </div>
       {visibleModal && <EventModal />}
