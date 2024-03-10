@@ -3,7 +3,6 @@ import ModalInfoEvent from "../ModalInfoEvent";
 import { VideoCameraIcon } from "@heroicons/react/outline";
 
 function EventItem({ data }) {
-  console.log("🚀 ~ EventItem ~ data:", data)
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -44,12 +43,9 @@ function EventItem({ data }) {
 
         <ModalInfoEvent closeModal={(e) => {
           closeModal()
-          console.log("a", closeModal)
         }} isOpen={isOpen} item={data} />
       </div>
-      {/* ) : (
-            <div></div>
-          )} */}
+     
     </>
   );
 }

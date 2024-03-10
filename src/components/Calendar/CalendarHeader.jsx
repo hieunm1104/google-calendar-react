@@ -10,14 +10,6 @@ function CalendarHeader() {
 
     const monthIndex = useSelector(state => state.month.monthIndex);
     const dispatch = useDispatch();
-    console.log("monthindex", monthIndex);
-  
-    
-    // useEffect(() => {
-    //     if(smallCalendarMonth!== null){
-    //         setMonthIndex(smallCalendarMonth);
-    //     }
-    // }, [smallCalendarMonth]);
 
     useEffect(() => {
         setCurrentMonth(getMonth(currentMonthIndex));

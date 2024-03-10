@@ -6,8 +6,8 @@ import { deleteEvent } from "../../redux/eventsReducer";
 
 const ModalInfoEvent = ({ item, isOpen, closeModal }) => {
   const dispatch = useDispatch();
-
   return (
+    item &&
     <Transition
       appear
       show={isOpen}
@@ -54,7 +54,7 @@ const ModalInfoEvent = ({ item, isOpen, closeModal }) => {
             "
               >
                 <div className="flex w-10/12">
-                  <div className="text-dark-blue">{item.data.title}</div>
+                   <div className="text-dark-blue">{item.data.title}</div>
                 </div>
                 <button onClick={closeModal}>
                   <XIcon className="h-4" />

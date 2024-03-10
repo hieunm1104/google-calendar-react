@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSmallCalendarMonth } from "../../redux/monthReducer";
 import { setDaySelected } from "../../redux/dayReducer";
 import { setIsContentVisible } from "../../redux/modalReducer";
-function SmallCalendar({ day }) {
+function SmallCalendar({ day, handleToggleDisplay }) {
   const [currentMonthIndex, setCurrentMonthIndex] = useState(dayjs().month());
   const [selectedDay, setSelectedDay] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(getMonth());
@@ -36,6 +36,7 @@ function SmallCalendar({ day }) {
 
   const handleClickDay = (day) => {
     setSelectedDay(day);
+    handleToggleDisplay();
   };
 
   return (

@@ -13,6 +13,8 @@ function Day({ day, weekIdx }) {
   const dispatch = useDispatch();
   const daySelected = useSelector((state) => state.day.daySelected);
   const visibleModal = useSelector((state) => state.modal.isModalVisible);
+  const [selectedItem, setItem] = useState()
+
   const handleDaySelected = (day) => {
     const action = setDaySelected({ daySelected: day });
     dispatch(action);
@@ -21,18 +23,22 @@ function Day({ day, weekIdx }) {
     const action = setIsModalVisible({ isModalVisible: true });
     dispatch(action);
   };
-  const openModal = () => {
-    setIsOpen(true);
-  }
+  const openModal = (item) => {
+    console.log('ITEm', item)
+    if (item) {
+
+      setItem(item)
+      setIsOpen(true);
+    }
+  };
   const closeModal = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
   const listEvent = useSelector((state) => {
     const a = Object.keys(state.event.listEvent).find(
       (key) =>
         dayjs(new Date(key)).format("DD-MM-YY") === day.format("DD-MM-YY")
     );
-
     return !!a ? state.event.listEvent[a] : undefined;
   });
   return (
@@ -45,11 +51,6 @@ function Day({ day, weekIdx }) {
         }}
       >
         <header className="flex flex-col items-center ">
-          {/* {
-                    weekIdx === 0 && (
-                        <p className='text-lg text-calendar-color'>{day.format('ddd').toUpperCase()}</p>
-                    )
-                } */}
           <button
             className={`text-lg p-1 my-1 text-center ${
               day.month() !== monthIndex % 12 &&
@@ -66,28 +67,24 @@ function Day({ day, weekIdx }) {
           >
             {day.format("D")}
           </button>
+          
           {listEvent &&
             listEvent.map((item, index) => (
               <>
                 {index < 2 && (
                   <>
+                    
                     <div
                       key={index}
                       className={`w-full text-left text-xs p-1 bg-dark-orange rounded mb-0.5 text-dark-blue font-semibold truncate border-l-4 ${item.data.labelColor.border} cursor-pointer hover:opacity-80`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        openModal();
+                        openModal(item);
                       }}
                     >
                       {item.data.title}
                     </div>
-                    <ModalInfoEvent
-                      closeModal={(e) => {
-                        closeModal();
-                      }}
-                      isOpen={isOpen}
-                      item={item}
-                    />
+                  
                   </>
                 )}
               </>
@@ -97,6 +94,14 @@ function Day({ day, weekIdx }) {
               {listEvent?.length - 2} More
             </div>
           )}
+
+                    <ModalInfoEvent
+                      closeModal={(e) => {
+                        closeModal();
+                      }}
+                      isOpen={isOpen}
+                      item={selectedItem}
+                    />
         </header>
       </div>
       {visibleModal && <EventModal />}

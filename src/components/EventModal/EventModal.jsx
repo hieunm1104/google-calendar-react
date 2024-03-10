@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { setIsModalVisible } from "../../redux/modalReducer";
 import { useSelector, useDispatch } from "react-redux";
-import { BookmarkIcon, ClockIcon, XIcon } from "@heroicons/react/outline";
-import { CalendarIcon, CheckIcon, MenuAlt3Icon } from "@heroicons/react/solid";
 import { addEvent } from "../../redux/eventsReducer";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -95,7 +93,7 @@ function EventModal(props) {
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form
-        className="bg-white rounded-lg w-1/4"
+        className="bg-white rounded-lg"
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit({ title, description, selectedLable });

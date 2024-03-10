@@ -3,11 +3,11 @@ import Day from '../Day/Day';
 import { useSelector } from 'react-redux';
 import { getMonth } from '../../util';
 import CalendarHeader from '../Calendar/CalendarHeader';
-function Month() {
+function Month({displayMonth}) {
     const monthIndex = useSelector(state => state.month.monthIndex);
     const month = getMonth(monthIndex);
     return (
-        <div className='flex flex-col w-full h-full bg-white p-10 rounded-2xl'>
+        <div className={`flex-col w-full h-full bg-white p-10 rounded-2xl ${displayMonth || 'hidden'} md:flex`}>
             <CalendarHeader />
             
             <div className='flex-1 grid grid-cols-7'>
