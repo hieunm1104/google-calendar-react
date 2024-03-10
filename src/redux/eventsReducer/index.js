@@ -59,5 +59,5 @@ const modalSlice = createSlice({
 });
 
 const { actions, reducer } = modalSlice;
-export const { addEvent, deleteEvent } = actions;
+export const { addEvent, deleteEvent, setSelectedEvent } = actions;
 export default reducer;

@@ -22,11 +22,13 @@ const labelsClasses = [
 ];
 
 function EventModal(props) {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState("");
   const [selectedLable, setSelectedLable] = useState(labelsClasses[0]);
   const daySelected = useSelector((state) => state.day.daySelected);
   const [value, setValue] = useState(dayjs("2022-04-17T9:30"));
+
+  
   const dispatch = useDispatch();
   function handleModalVisible(isModalVisible) {
     const action = setIsModalVisible({ isModalVisible: false });
@@ -116,7 +118,7 @@ function EventModal(props) {
           <div className="grid grid-cols-1/5 items-end gap-y-7">
             <div></div>
             <input
-              form={form}
+              required
               type="text"
               name="title"
               placeholder="Add title...."

@@ -1,18 +1,19 @@
-import { Dialog, Transition } from '@headlessui/react';
-import { ClockIcon, XIcon } from '@heroicons/react/outline';
-import React, { Fragment } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteEvent } from '../../redux/eventsReducer';
+import { Dialog, Transition } from "@headlessui/react";
+import { ClockIcon, XIcon } from "@heroicons/react/outline";
+import React, { Fragment } from "react";
+import { useDispatch } from "react-redux";
+import { deleteEvent } from "../../redux/eventsReducer";
 
-
-const ModalInfoEvent = ({item, isOpen, closeModal}) => {
-
+const ModalInfoEvent = ({ item, isOpen, closeModal }) => {
   const dispatch = useDispatch();
 
-
-
   return (
-    <Transition appear show={isOpen} as={Fragment} onClick={(e) => e.stopPropagation()}>
+    <Transition
+      appear
+      show={isOpen}
+      as={Fragment}
+      onClick={(e) => e.stopPropagation()}
+    >
       <Dialog
         as="div"
         className="fixed inset-0 z-10 overflow-y-auto"
@@ -49,12 +50,11 @@ const ModalInfoEvent = ({item, isOpen, closeModal}) => {
             <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-lg rounded-2xl">
               <Dialog.Title
                 as="h3"
-                className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-start border-b-2 pb-4
+                className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-start border-b-2 pb-2
             "
               >
                 <div className="flex w-10/12">
-                  <div className="text-blue-dark mr-3">Title:</div>
-                  <div>{item.data.title}</div>
+                  <div className="text-dark-blue">{item.data.title}</div>
                 </div>
                 <button onClick={closeModal}>
                   <XIcon className="h-4" />
@@ -62,29 +62,31 @@ const ModalInfoEvent = ({item, isOpen, closeModal}) => {
               </Dialog.Title>
 
               <div className="mt-2">
-                <p className="text-sm text-gray-500 flex justify-start items-center">
-                  {/* <ClockIcon className="h-5 w-5 bg-blue-dark rounded-full text-white mr-3" />
+                <p className="text-sm text-gray-500 flex justify-start items-center gap-4">
+                  <span className="material-icons-outlined text-gray-400">
+                    schedule
+                  </span>
                   {item.data.time.from.hour < 10
                     ? `0${item.data.time.from.hour}`
                     : item.data.time.from.hour}
-                  {':'}
+                  {":"}
                   {item.data.time.from.minute < 10
                     ? `0${item.data.time.from.minute}`
                     : item.data.time.from.minute}
-                  {' - '}
+                  {" - "}
                   {item.data.time.to.hour < 10
                     ? `0${item.data.time.to.hour}`
                     : item.data.time.to.hour}
-                  {':'}
+                  {":"}
                   {item.data.time.to.minute < 10
                     ? `0${item.data.time.to.minute}`
-                    : item.data.time.to.minute} */}
+                    : item.data.time.to.minute}
                 </p>
               </div>
 
               <div className="mt-2">
                 <p className="text-sm text-gray-500 flex">
-                  <div className="text-blue-dark mr-3 ">Description:</div>
+                  <div className="text-dark-blue mr-3 ">Description:</div>
                   <div>{item.data.description}</div>
                 </p>
               </div>
