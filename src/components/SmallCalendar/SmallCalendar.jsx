@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { getMonth } from "../../util";
 import { useDispatch, useSelector } from "react-redux";
-import { setSmallCalendarMonth } from "../../redux/monthReducer";
-import { setDaySelected } from "../../redux/dayReducer";
-import { setIsContentVisible } from "../../redux/modalReducer";
 function SmallCalendar({ day, handleToggleDisplay }) {
   const [currentMonthIndex, setCurrentMonthIndex] = useState(dayjs().month());
   const [selectedDay, setSelectedDay] = useState(null);

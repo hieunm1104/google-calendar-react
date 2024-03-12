@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { getMonth } from '../../util';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setMonthIndex } from '../../redux/monthReducer';
 function CalendarHeader() {
-    const [currentMonthIndex, setCurrentMonthIndex] = useState(dayjs().month());
-    const [currentMonth, setCurrentMonth] = useState(getMonth());
-    const [smallCalendarMonth, setSmallCalendarMonth] = useState(null);
-
     const monthIndex = useSelector(state => state.month.monthIndex);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        setCurrentMonth(getMonth(currentMonthIndex));
-    }, [currentMonthIndex]);
-
+  
     const handlePrevMonth = () => {
         const action = setMonthIndex({ monthIndex: monthIndex - 1 });
         dispatch(action);
