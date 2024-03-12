@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import SmallCalendar from "../SmallCalendar/SmallCalendar";
-import { useSelector } from "react-redux";
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import dayjs from "dayjs";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { getMonth } from "../../util";
 import EventItem from "../EventItem/EventItem";
-function Sidebar({hiddenSidebar, handleToggleDisplay}) {
+import SmallCalendar from "../SmallCalendar/SmallCalendar";
+function Sidebar({ hiddenSidebar, handleToggleDisplay, isMobileDevices }) {
   const today = useSelector((state) => state.day.todaySelected);
   const [currentMonthIndex, setCurrentMonthIndex] = useState(dayjs().month());
   const [currentMonth, setCurrentMonth] = useState(getMonth());
@@ -36,12 +36,11 @@ function Sidebar({hiddenSidebar, handleToggleDisplay}) {
       })
       .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
       .map((i) => state.event.listEvent[i].length);
-
     return a;
   });
-    return (
-      <div className={`bg-white rounded-xl ${hiddenSidebar || 'block'}`}>
-      <SmallCalendar handleToggleDisplay={handleToggleDisplay}/>
+  return (
+    <div className={`bg-white rounded-xl ${hiddenSidebar || "block"} ${isMobileDevices && "hidden"}`}>
+      <SmallCalendar handleToggleDisplay={handleToggleDisplay} />
       <div className="h-[1px] w-full bg-dark-blue"></div>
 
       <div className="flex justify-between pt-6 px-4">

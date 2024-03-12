@@ -7,7 +7,7 @@ function Month({displayMonth}) {
     const monthIndex = useSelector(state => state.month.monthIndex);
     const month = getMonth(monthIndex);
     return (
-        <div className={`flex-col w-full h-full bg-white p-10 rounded-2xl ${displayMonth || 'hidden'} md:flex`}>
+        <div className={`flex-col w-full h-full bg-white p-10 rounded-2xl`}>
             <CalendarHeader />
             
             <div className='flex-1 grid grid-cols-7'>
